@@ -13,14 +13,11 @@
  * writing app.js a little simpler to work with.
  */
 //mielőtt elkezdené a loopolást meg felrajzolást, válasszon játékost
-function choosePlayer(){
 //ki kell rajzolni a játékosokat egy táblázatba
 //eventListener-rel kiválasztani, hogy melyik játékost választotta és azt belerakni egy változóba
 //lehet, hogy ezt a player methodjaként kellene megírni?
-player.sprite = 'images/char-boy.png';
-}
+document.querySelector('.playersLightBox').style.display = "block";
 
-choosePlayer();
 
 var Engine = (function(global) { //létrehoz egy Engine constructort, amit azonnal le is futtat? Miért adja a global-t attribute-ként a függvénynek?
     /* Predefine the variables we'll be using within this scope,
@@ -183,7 +180,11 @@ var Engine = (function(global) { //létrehoz egy Engine constructort, amit azonn
         'images/grass-block.png',
         'images/enemy-bug.png',
         'images/char-boy.png',
-        'images/char-cat-girl.png'
+        'images/char-cat-girl.png',
+        'images/char-princess-girl.png',
+        'images/char-pink-girl.png',
+        'images/char-horn-girl.png'
+
     ]);
     Resources.onReady(init);
 

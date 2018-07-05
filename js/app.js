@@ -1,4 +1,30 @@
 // Enemies our player must avoid
+const lightBox = document.querySelector('.lightBox');
+let interval;
+
+function startTimer(){
+    let second = 0;
+    let minute = 0;
+    const timer = document.querySelector('.timer');
+    interval = setInterval(function(){
+        if(minute > 0){
+            timer.innerHTML = ` ${minute} min ${second} sec`;
+        }else{
+            timer.innerHTML = ` ${second} sec`;        
+        }
+        second++;
+        if(second == 60){
+            minute++;
+            second = 0;
+        }
+        if(minute == 60){
+            hour++;
+            minute = 0;
+        }
+    },1000);
+}
+
+
 class Enemy {
     constructor(x, y, speed){
     // The image/sprite for our enemies, this uses
@@ -54,7 +80,7 @@ class Enemy {
 
 class Player {
     constructor(x, y){
-        //this.sprite = 'images/char-boy.png';
+        this.sprite = 'images/char-boy.png';
         this.x = x;
         this.y = y;
         this.height = 83;
@@ -99,21 +125,29 @@ class Player {
     //If the player reaches the water the game should be reset by moving the player back to the initial location
     reset(){
         if ( player.y <= 0){
-            setTimeout (() => {player.y = 406;
-            player.x = 200;}, 2000)
+            clearInterval(interval);
+            setTimeout (() => {
+                player.y = 406;
+                player.x = 200;
+                player.winningMessage();//ezt jó ide, vagy inkább az object-en kívülre kellene? 
+            }, 500)
 
 
         }
 
+    }
+
+    winningMessage(){
+        document.querySelector(".lightBox").style.display = "block";
     }
 };
 
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
-const speed1 = Math.random()*100 +100;
-const speed2 = Math.random()*100 +90;
-const speed3 = Math.random()*100 +80;
+const speed1 = Math.random()*100;
+const speed2 = Math.random()*100;
+const speed3 = Math.random()*100;
 const firstEnemy = new Enemy(200, 64, speed1);
 const secondEnemy = new Enemy (10, 147, speed2);
 const thirdEnemy = new Enemy ( 100, 230, speed3);
@@ -137,4 +171,29 @@ document.addEventListener('keyup', function(e) {
     };
 
     player.handleInput(allowedKeys[e.keyCode]);
+});
+
+//EventListener to make the lightbox disappear to a click
+lightBox.addEventListener('click',function(evt){
+    lightBox.style.display = "none";
+    window.location.reload();
+});
+
+ 
+//EventListener to make the lightbox disappear to the ESC button press
+document.addEventListener('keydown', function(e){
+    if (e.which == 27) {
+        setTimeout(() => {
+            lightBox.style.display = "none";
+            window.location.reload();},500);
+    }
+});
+
+document.querySelector('.playerSelection').addEventListener('click',function(event){
+    if ( event.target.tagName.toUpperCase() == "IMG"){
+        player.sprite = event.target.getAttribute('src');
+    }
+    startTimer();
+    document.querySelector('.playersLightBox').style.display = "none";
+    
 });

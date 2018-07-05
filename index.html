@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Effective JavaScript: Frogger</title>
+    <link rel="stylesheet prefetch" href="https://fonts.googleapis.com/css?family=Love+Ya+Like+A+Sister|Dosis|Coda|Righteous">
     <link rel="stylesheet" href="css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
 	<div class="container">
@@ -14,7 +16,24 @@
 				<li>Lifes</li>
 				<li>Reset</li>
 			</ul>
+			<span class="timer"></span>
 		</section>
+		<div class="playersLightBox">
+			<div class="playerSelection">
+				<span class="choosePlayerText">Please choose a player</span>
+				<span class="players"><img src="images/char-boy.png"></span>
+				<span class="players"><img src="images/char-cat-girl.png"></span>
+				<span class="players"><img src="images/char-pink-girl.png"></span>
+				<span class="players"><img src="images/char-princess-girl.png"></span>
+				<span class="players"><img src="images/char-horn-girl.png"></span>
+			</ul>
+		</div>
+	</div>
+	<div class="lightBox">
+		<div class="winningMessage">
+			<p class="gratText">Congratulations!
+			<br />You've reached the water!</p>
+		</div>
 	</div>
     <script src="js/resources.js"></script>
     <script src="js/app.js"></script>
