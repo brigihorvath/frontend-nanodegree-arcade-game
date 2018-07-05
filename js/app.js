@@ -150,21 +150,6 @@ class Player {
     }
 };
 
-class Gem{
-    constructor(x, y){
-        this.x = x;
-        this.y = y;
-    }
-    update(){
-
-    }
-    render(){
-        ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-    }
-    pickUp(){
-
-    }
-};
 
 
 // Now instantiate your objects.
@@ -183,15 +168,6 @@ const allEnemies = [firstEnemy, secondEnemy, thirdEnemy/*, fourthEnemy, fifthEne
 // Place the player object in a variable called player
 const player = new Player(200, 406);
 
-
-//instantiate Gems
-const gemBlueX = Math.floor(Math.random() * 505);
-
-const gemBlue = new Gem(gemBlueX,64);
-gemBlue.sprite = 'images/Gem Blue.png';
-
-
-const allGems = [gemBlue];
 
 
 // This listens for key presses and sends the keys to your
