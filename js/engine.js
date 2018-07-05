@@ -12,14 +12,23 @@
  * This engine makes the canvas' context (ctx) object globally available to make 
  * writing app.js a little simpler to work with.
  */
+//mielőtt elkezdené a loopolást meg felrajzolást, válasszon játékost
+function choosePlayer(){
+//ki kell rajzolni a játékosokat egy táblázatba
+//eventListener-rel kiválasztani, hogy melyik játékost választotta és azt belerakni egy változóba
+//lehet, hogy ezt a player methodjaként kellene megírni?
+player.sprite = 'images/char-boy.png';
+}
 
-var Engine = (function(global) {
+choosePlayer();
+
+var Engine = (function(global) { //létrehoz egy Engine constructort, amit azonnal le is futtat? Miért adja a global-t attribute-ként a függvénynek?
     /* Predefine the variables we'll be using within this scope,
      * create the canvas element, grab the 2D context for that canvas
      * set the canvas elements height/width and add it to the DOM.
      */
-    var doc = global.document,
-        win = global.window,
+    var doc = global.document, //ez miért szükséges?
+        win = global.window, //ez miért szükséges?
         canvas = doc.createElement('canvas'),
         ctx = canvas.getContext('2d'),
         lastTime;
@@ -31,7 +40,7 @@ var Engine = (function(global) {
     /* This function serves as the kickoff point for the game loop itself
      * and handles properly calling the update and render methods.
      */
-    function main() {
+    function main() { //ez a main mikor fut le egy IIFE-ben? csak amikor hívják? mi van, ha nem hívják egyáltalán?
         /* Get our time delta information which is required if your game
          * requires smooth animation. Because everyone's computer processes
          * instructions at different speeds we need a constant value that
@@ -39,7 +48,7 @@ var Engine = (function(global) {
          * computer is) - hurray time!
          */
         var now = Date.now(),
-            dt = (now - lastTime) / 1000.0;
+            dt = (now - lastTime) / 1000.0; //a dt az utolsó update óta eltelt idő/ 1000-et jelenti? Ez kell a smooth animation-höz, hogy legyen egy általános sebességmérőnk? És miért osztjuk ezerrel?
 
         /* Call our update/render functions, pass along the time delta to
          * our update function since it may be used for smooth animation.
@@ -173,7 +182,8 @@ var Engine = (function(global) {
         'images/water-block.png',
         'images/grass-block.png',
         'images/enemy-bug.png',
-        'images/char-boy.png'
+        'images/char-boy.png',
+        'images/char-cat-girl.png'
     ]);
     Resources.onReady(init);
 
@@ -182,4 +192,4 @@ var Engine = (function(global) {
      * from within their app.js files.
      */
     global.ctx = ctx;
-})(this);
+})(this);//miért a this-sel futtatja le?
