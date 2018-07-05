@@ -12,10 +12,8 @@
  * This engine makes the canvas' context (ctx) object globally available to make 
  * writing app.js a little simpler to work with.
  */
-//mielőtt elkezdené a loopolást meg felrajzolást, válasszon játékost
-//ki kell rajzolni a játékosokat egy táblázatba
-//eventListener-rel kiválasztani, hogy melyik játékost választotta és azt belerakni egy változóba
-//lehet, hogy ezt a player methodjaként kellene megírni?
+
+//draws a lightbox to the screen, to make more than 1 sprites available
 document.querySelector('.playersLightBox').style.display = "block";
 
 
@@ -193,4 +191,4 @@ var Engine = (function(global) { //létrehoz egy Engine constructort, amit azonn
      * from within their app.js files.
      */
     global.ctx = ctx;
-})(this);//miért a this-sel futtatja le?
+})(this);

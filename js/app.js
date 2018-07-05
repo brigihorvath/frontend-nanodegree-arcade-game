@@ -4,12 +4,16 @@ let interval;
 let second = 1;
 let minute = 0;
 
+
+//timer function
 function startTimer(){
     
     const timer = document.querySelector('.timer');
     interval = setInterval(function(){
-        if(minute > 0){
+        if(minute > 0 && second > 9){
             timer.innerHTML = `${minute} : ${second}`;
+        }else if(minute > 0 && second < 10){
+            timer.innerHTML = `${minute} : 0${second}`;
         }else if(second < 10){
             timer.innerHTML = `0:0${second}`;        
         }else{
@@ -36,7 +40,8 @@ class Enemy {
         this.x = x;
         this.y = y;
         this.speed = speed;
-        this.height = 83;
+        //use the width and the height with the collision function
+        this.height = 83; 
         this.width = 101;
 
     }
@@ -65,8 +70,11 @@ class Enemy {
         ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
     }
 
+    //if the enemy hits the player or the player steps too near a bug, 
+    //than a collision is detected and the player is set back to its original place
+    //the width values are corrected, because the real images are wider, than they appear on the screen
     collisionHandler(){
-        if ((player.y == (this.y + 10)) && player.x <this.x + this.width - 28 && player.x + player.width > this.x)
+        if ((player.y == (this.y + 10)) && player.x <this.x + this.width - 28 && player.x + player.width - 20 > this.x)
          {
             player.y = 406;
             player.x = 200;
@@ -83,18 +91,25 @@ class Enemy {
 
 class Player {
     constructor(x, y){
+        //the default sprite is char-boy, but there is an opportunity to change this
         this.sprite = 'images/char-boy.png';
         this.x = x;
         this.y = y;
+        //height and with used at collision detection
         this.height = 83;
         this.width =101;
     }
+    //when the player reaches the water, it will be reset to the original place
+    //and a winning message shows up
     update(){
         player.reset();
     }
+    //draw the player to the canvas
     render(){
         ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
     }
+
+    //move the player according to the pressed arrow keys
 
     handleInput(allowedKeys){
     switch(allowedKeys){
@@ -139,7 +154,7 @@ class Player {
         }
 
     }
-
+    //when the player reaches the water, a winning message shows up
     winningMessage(){       
         document.querySelector(".lightBox").style.display = "block";
         if(minute === 0){
@@ -154,9 +169,10 @@ class Player {
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
-const speed1 = Math.random()*100;
-const speed2 = Math.random()*100;
-const speed3 = Math.random()*100;
+//the speed of the bugs will be random
+const speed1 = Math.random()*400;
+const speed2 = Math.random()*400;
+const speed3 = Math.random()*400;
 const firstEnemy = new Enemy(200, 64, speed1);
 const secondEnemy = new Enemy (10, 147, speed2);
 const thirdEnemy = new Enemy ( 100, 230, speed3);
@@ -199,6 +215,10 @@ document.addEventListener('keydown', function(e){
     }
 });
 
+
+//EventListener, that changes the players sprite to the chosen one
+//starts the timer
+//makes the lightbox disappear
 document.querySelector('.playerSelection').addEventListener('click',function(event){
     if ( event.target.tagName.toUpperCase() == "IMG"){
         player.sprite = event.target.getAttribute('src');
