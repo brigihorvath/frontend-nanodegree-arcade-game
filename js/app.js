@@ -1,16 +1,19 @@
 // Enemies our player must avoid
 const lightBox = document.querySelector('.lightBox');
 let interval;
+let second = 1;
+let minute = 0;
 
 function startTimer(){
-    let second = 0;
-    let minute = 0;
+    
     const timer = document.querySelector('.timer');
     interval = setInterval(function(){
         if(minute > 0){
-            timer.innerHTML = ` ${minute} min ${second} sec`;
+            timer.innerHTML = `${minute} : ${second}`;
+        }else if(second < 10){
+            timer.innerHTML = `0:0${second}`;        
         }else{
-            timer.innerHTML = ` ${second} sec`;        
+            timer.innerHTML = `0:${second}`;
         }
         second++;
         if(second == 60){
@@ -125,20 +128,25 @@ class Player {
     //If the player reaches the water the game should be reset by moving the player back to the initial location
     reset(){
         if ( player.y <= 0){
-            clearInterval(interval);
             setTimeout (() => {
                 player.y = 406;
                 player.x = 200;
                 player.winningMessage();//ezt jó ide, vagy inkább az object-en kívülre kellene? 
             }, 500)
+            clearInterval(interval);
 
 
         }
 
     }
 
-    winningMessage(){
+    winningMessage(){       
         document.querySelector(".lightBox").style.display = "block";
+        if(minute === 0){
+        document.getElementsByClassName("timerToMessage")[0].innerHTML = ` ${second-1} sec`; //-1 sec because of the setTimeout
+        }else{
+            document.getElementsByClassName("timerToMessage")[0].innerHTML = ` ${minute} min ${second-1} sec`;//-1 sec because of the setTimeout
+        }
     }
 };
 

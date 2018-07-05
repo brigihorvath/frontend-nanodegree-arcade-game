@@ -30,15 +30,14 @@ body {
 }
 
 .score-panel {
-	text-align: left;
+	text-align: center;
     width: 345px;
-    margin: none;
+    margin-top: 30px;
 }
 
 .score-panel li {
     list-style: none;
     display: inline-block;
-
 }
 
 .lightBox{
@@ -72,6 +71,12 @@ body {
     font-family: 'Righteous', cursive;
     font-size: 5vw;
     color: white;
+}
+
+.timer{
+	font-family: 'Righteous', cursive;
+    font-size: 2.5vw;
+    color: grey;
 }
 
 .playerSelection {
