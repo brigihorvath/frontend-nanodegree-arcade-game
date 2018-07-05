@@ -158,6 +158,9 @@ var Engine = (function(global) { //létrehoz egy Engine constructort, amit azonn
         allEnemies.forEach(function(enemy) {
             enemy.render();
         });
+        allGems.forEach(function(gem){
+            gem.render();
+        });
 
         player.render();
     }
@@ -183,7 +186,16 @@ var Engine = (function(global) { //létrehoz egy Engine constructort, amit azonn
         'images/char-cat-girl.png',
         'images/char-princess-girl.png',
         'images/char-pink-girl.png',
-        'images/char-horn-girl.png'
+        'images/char-horn-girl.png',
+        'images/Gem Blue.png',
+        'images/Gem Green.png',
+        'images/Gem Orange.png',
+        'images/Heart.png',
+        'images/Key.png',
+        'images/Rock.png',
+        'images/Selector.png',
+        'images/Star.png'
+
 
     ]);
     Resources.onReady(init);
