@@ -134,11 +134,10 @@ class Player {
     //If the player reaches the water the game should be reset by moving the player back to the initial location
     reset(){
         if ( this.y <= 0){
-            const myPlayer = this;
             setTimeout (() => {
-                myPlayer.y = 406;
-                myPlayer.x = 200;
-                myPlayer.winningMessage();//ezt jó ide, vagy inkább az object-en kívülre kellene? 
+                this.y = 406;
+                this.x = 200;
+                this.winningMessage();
             }, 500)
             clearInterval(interval);
         }
