@@ -4,10 +4,8 @@ let interval;
 let second = 1;
 let minute = 0;
 
-
 //timer function
-function startTimer(){
-    
+function startTimer(){    
     const timer = document.querySelector('.timer');
     interval = setInterval(function(){
         if(minute > 0 && second > 9){
@@ -43,7 +41,6 @@ class Enemy {
         //use the width and the height with the collision function
         this.height = 83; 
         this.width = 101;
-
     }
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
@@ -54,16 +51,14 @@ class Enemy {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
-    
     //in case one enemy reaches the end of the canvas, then it will appear again on the other side
     if (this.x >= 505){
-        this.x = -101; //the width of the bug is 101
+    this.x = -101; //the width of the bug is 101
     }
     //sets the bug to the new location (distance = speed*time)
     this.x += this.speed * dt;
     this.collisionHandler();
-
-}
+    }
 
     // Draw the enemy on the screen, required method for game
     render() {
@@ -80,8 +75,6 @@ class Enemy {
             player.x = 200;
         }
     }
-    
-    
 }
 
 
@@ -90,9 +83,9 @@ class Enemy {
 // a handleInput() method.
 
 class Player {
-    constructor(x, y){
+    constructor(x, y, sprite = 'images/char-boy.png'){
         //the default sprite is char-boy, but there is an opportunity to change this
-        this.sprite = 'images/char-boy.png';
+        this.sprite = sprite;
         this.x = x;
         this.y = y;
         //height and with used at collision detection
@@ -108,36 +101,34 @@ class Player {
     render(){
         ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
     }
-
     //move the player according to the pressed arrow keys
 
     handleInput(allowedKeys){
-    switch(allowedKeys){
-        case 'left':
-        if(this.x > 0){
-            this.x -= 101;
+        switch(allowedKeys){
+            case 'left':
+            if(this.x > 0){
+                this.x -= 101;
+            }
+            break;
+
+            case 'up':
+            if(this.y > 0){
+                this.y -= 83;
+            }
+            break;
+
+            case 'right':
+            if(this.x < 400){
+                this.x += 101;
+            }
+            break;
+
+            case 'down':
+            if(this.y < 400){
+                this.y += 83;
+            } 
+            break;
         }
-        break;
-
-        case 'up':
-        if(this.y > 0){
-            this.y -= 83;
-        }
-        break;
-
-        case 'right':
-        if(this.x < 400){
-        this.x += 101;
-        }
-        break;
-
-        case 'down':
-        if(this.y < 400){
-            this.y += 83;
-        } 
-        break;
-    }
-
     }
 
     //If the player reaches the water the game should be reset by moving the player back to the initial location
@@ -149,8 +140,6 @@ class Player {
                 player.winningMessage();//ezt jó ide, vagy inkább az object-en kívülre kellene? 
             }, 500)
             clearInterval(interval);
-
-
         }
 
     }

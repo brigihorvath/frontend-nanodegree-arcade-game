@@ -16,7 +16,6 @@
 //draws a lightbox to the screen, to make more than 1 sprites available
 document.querySelector('.playersLightBox').style.display = "block";
 
-
 var Engine = (function(global) { //létrehoz egy Engine constructort, amit azonnal le is futtat? Miért adja a global-t attribute-ként a függvénynek?
     /* Predefine the variables we'll be using within this scope,
      * create the canvas element, grab the 2D context for that canvas
@@ -27,7 +26,6 @@ var Engine = (function(global) { //létrehoz egy Engine constructort, amit azonn
         canvas = doc.createElement('canvas'),
         ctx = canvas.getContext('2d'),
         lastTime;
-
     canvas.width = 505;
     canvas.height = 606;
     doc.body.appendChild(canvas);
@@ -71,7 +69,6 @@ var Engine = (function(global) { //létrehoz egy Engine constructort, amit azonn
         lastTime = Date.now();
         main();
     }
-
     /* This function is called by main (our game loop) and itself calls all
      * of the functions which may need to update entity's data. Based on how
      * you implement your collision detection (when two entities occupy the
