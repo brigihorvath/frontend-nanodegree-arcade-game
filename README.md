@@ -11,6 +11,10 @@ In this game you have a Player and Enemies (Bugs). The goal of the player is to 
 
 * [Dependencies](#dependencies)
 * [Contributing](#contributing)
+* [Acknowledgments](#contributing)
+
+## Running the game
+If you want to load the game locally,  you should first clone the repository and open index.html in the browser.
 
 ## Dependencies
 For using the project, you should be able to reach the following:
