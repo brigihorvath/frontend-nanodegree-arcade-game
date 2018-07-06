@@ -1,4 +1,4 @@
-#Classic Arcade Game
+# Classic Arcade Game
  ===============================
 
 A Udacity Front-End Developer Scholarship Project - 2018
@@ -22,6 +22,6 @@ For using the project, you should be able to reach the following:
 
 For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
 
-##Acknowledgments
+## Acknowledgments
 
 Background pattern is from Subtle Patterns.
