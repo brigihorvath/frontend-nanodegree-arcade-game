@@ -95,7 +95,7 @@ class Player {
     //when the player reaches the water, it will be reset to the original place
     //and a winning message shows up
     update(){
-        player.reset();
+        this.reset();
     }
     //draw the player to the canvas
     render(){
@@ -133,11 +133,12 @@ class Player {
 
     //If the player reaches the water the game should be reset by moving the player back to the initial location
     reset(){
-        if ( player.y <= 0){
+        if ( this.y <= 0){
+            const myPlayer = this;
             setTimeout (() => {
-                player.y = 406;
-                player.x = 200;
-                player.winningMessage();//ezt jó ide, vagy inkább az object-en kívülre kellene? 
+                myPlayer.y = 406;
+                myPlayer.x = 200;
+                myPlayer.winningMessage();//ezt jó ide, vagy inkább az object-en kívülre kellene? 
             }, 500)
             clearInterval(interval);
         }
