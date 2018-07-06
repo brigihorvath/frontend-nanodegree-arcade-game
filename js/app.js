@@ -29,22 +29,28 @@ function startTimer(){
     },1000);
 }
 
-
-class Enemy {
-    constructor(x, y, speed){
-    // The image/sprite for our enemies, this uses
-    // a helper we've provided to easily load images
-        this.sprite = 'images/enemy-bug.png';
+//prototype class for all the living thing in the game
+class LivingThings {
+    constructor (x, y){
         this.x = x;
         this.y = y;
-        this.speed = speed;
-        //use the width and the height with the collision function
-        this.height = 83; 
+        this.sprite = 'images/enemy-bug.png';
+        this.height = 83;
         this.width = 101;
     }
-    // Variables applied to each of our instances go here,
-    // we've provided one for you to get started
+    //render function is the same for both the Enemy and the Player classes
+    render(){
+        ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+    }
+}
 
+
+//Enemy Class inherits from LivingThings Class
+class Enemy extends LivingThings{
+    constructor(x, y, speed){
+        super(x, y);
+        this.speed = speed;
+    }
     // Update the enemy's position, required method for game
     // Parameter: dt, a time delta between ticks
     update(dt){
@@ -59,12 +65,6 @@ class Enemy {
     this.x += this.speed * dt;
     this.collisionHandler();
     }
-
-    // Draw the enemy on the screen, required method for game
-    render() {
-        ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-    }
-
     //if the enemy hits the player or the player steps too near a bug, 
     //than a collision is detected and the player is set back to its original place
     //the width values are corrected, because the real images are wider, than they appear on the screen
@@ -78,31 +78,21 @@ class Enemy {
 }
 
 
-// Now write your own player class
-// This class requires an update(), render() and
-// a handleInput() method.
-
-class Player {
+//Player Class inherits from LivingThings class
+//the sprite should be changed, because it is set to the bug image in the parent class
+class Player extends LivingThings{
     constructor(x, y, sprite = 'images/char-boy.png'){
         //the default sprite is char-boy, but there is an opportunity to change this
-        this.sprite = sprite;
-        this.x = x;
-        this.y = y;
-        //height and with used at collision detection
-        this.height = 83;
-        this.width =101;
+        super(x,y);
+        this.sprite = sprite;   
     }
     //when the player reaches the water, it will be reset to the original place
     //and a winning message shows up
     update(){
         this.reset();
     }
-    //draw the player to the canvas
-    render(){
-        ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-    }
+    
     //move the player according to the pressed arrow keys
-
     handleInput(allowedKeys){
         switch(allowedKeys){
             case 'left':
